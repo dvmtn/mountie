@@ -7,17 +7,8 @@ def random_top
   rand(300)
 end
 
-def mountain_range_svg
-  Rasem::SVGImage.new(800, 400) do
-    points = MountainRange.new.points(800,400)
-    points.each_cons(2) do |a,z|
-      line a.first, a.last, z.first, z.last, :stroke=>"green"
-    end
-  end.output
-end
-
 get '/' do
-  @svg = mountain_range_svg
+  @svg = MountainRange.new(800,400).to_svg
   erb :index
 end
 
