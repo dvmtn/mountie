@@ -10,10 +10,10 @@ class MountainMaker
 
   def points width, height
     x, y = 0
-    output = []
+    output = [[0,rand(height)]]
     while x < width do
       x = x + THINNEST_PEAK + rand(WIDEST_PEAK)
-      y =  SHORTEST_PEAK + rand(height - SHORTEST_PEAK)
+      y =  rand(height)
       output << [x,y]
     end
     output
