@@ -8,8 +8,8 @@ def random_top
 end
 
 def build_mountain
-  img = Rasem::SVGImage.new(400, 400) do
-    points = MountainMaker.new.points(400,400)
+  img = Rasem::SVGImage.new(680, 400) do
+    points = MountainMaker.new.points(680,400)
     points.each_cons(2) do |a,z|
       line a.first, a.last, z.first, z.last, :stroke=>"green"
     end
