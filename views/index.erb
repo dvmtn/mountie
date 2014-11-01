@@ -15,6 +15,7 @@
   <section>
     <p>Randomly generated mountains.</p>
     <%= @svg %>
+    <button id="new">New mountain!</button>
   </section>
   <script src="/walkway.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -23,9 +24,11 @@
       var svg = new Walkway('svg');
       setTimeout(function(){
         svg.draw(function () {
-          console.log('Animation finished');
         });
-      }, 2000);
+      }, 300);
+      $('#new').click(function(){
+        location.reload();
+      });
     });
   </script>
 </body>

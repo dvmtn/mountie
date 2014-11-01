@@ -1,13 +1,52 @@
 require 'sinatra'
 require 'rasem'
 
+def random_top
+  rand(300)
+end
+
 def build_mountain
+  old_left = 0
+  old_top = 380
+  left = 20
+  top = random_top
   img = Rasem::SVGImage.new(400,400) do
-    
-    line 20, 20, 20, 380
-    line 20, 380, 380, 380
-    line 380, 380, 380, 20
-    line 380, 20, 20, 20
+    line old_left, old_top, left, top
+    old_left = left
+    old_top = top
+    top = random_top
+    left += rand(30)
+    line old_left, old_top, left, top
+    old_left = left
+    old_top = top
+    top = random_top
+    left += rand(30)
+    line old_left, old_top, left, top
+    old_left = left
+    old_top = top
+    top = random_top
+    left += rand(30)
+    line old_left, old_top, left, top
+    old_left = left
+    old_top = top
+    top = random_top
+    left += rand(30)
+    line old_left, old_top, left, top
+    old_left = left
+    old_top = top
+    top = random_top
+    left += rand(30)
+    line old_left, old_top, left, top
+    old_left = left
+    old_top = top
+    top = random_top
+    left += rand(30)
+    line old_left, old_top, left, top
+    old_left = left
+    old_top = top
+    top = 380
+    left = 380
+    line old_left, old_top, left, top
   end
   img.output
 end
