@@ -1,6 +1,4 @@
-require 'rubygems'
-require 'sinatra'
-require 'rasem'
+require "bundler/setup"
 require './app'
 
 Bundler.require(:default, ENV['RACK_ENV']) if defined?(Bundler)
