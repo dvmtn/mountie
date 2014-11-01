@@ -1,35 +1,26 @@
+require_relative 'mountain'
+
 class MountainRange
-  THINNEST_PEAK = 17
-  WIDEST_PEAK = 102
-  SHORTEST_PEAK = 102
 
   def initialize width, height
     @width, @height = width, height
   end
 
-  def points
-    @points ||= generate_points
+  def generate_mountains
+    (0..5).map { Mountain.new(200, @height) }
   end
 
   def to_svg
-    line_points = points
+    mountains = generate_mountains
     Rasem::SVGImage.new(@width, @height) {
-      line_points.each_cons(2) do |a,z|
-        line a.first, a.last, z.first, z.last, :stroke=>"green"
+      mountains.each_with_index do |mountain, index|
+        line_points = mountain.points
+        offset = (index * 50) + rand(index * 100)
+        line_points.each_cons(2) do |a,z|
+          line a.first + offset, a.last, z.first + offset, z.last, :stroke=>"green"
+        end
+        
       end
     }.output
-  end
-
-  private 
-
-  def generate_points
-    x, y = 0
-    output = [[0,rand(@height)]]
-    while x < @width do
-      x = x + THINNEST_PEAK + rand(WIDEST_PEAK)
-      y = rand(@height)
-      output << [x,y]
-    end
-    output
   end
 end
