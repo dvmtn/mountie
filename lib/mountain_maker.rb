@@ -3,11 +3,6 @@ class MountainMaker
   WIDEST_PEAK = 100
   SHORTEST_PEAK = 100
 
-  def call width, height
-    points = points(width, height)
-    svg_path(points).to_command
-  end
-
   def points width, height
     x, y = 0
     output = [[0,rand(height)]]
