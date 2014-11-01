@@ -1,24 +1,23 @@
 require 'sinatra'
 require 'rasem'
 
-require_relative 'lib/mountain_maker'
+require_relative 'lib/mountain_range'
 
 def random_top
   rand(300)
 end
 
-def build_mountain
-  img = Rasem::SVGImage.new(400, 400) do
-    points = MountainMaker.new.points(400,400)
+def mountain_range_svg
+  Rasem::SVGImage.new(800, 400) do
+    points = MountainRange.new.points(800,400)
     points.each_cons(2) do |a,z|
       line a.first, a.last, z.first, z.last, :stroke=>"green"
     end
-  end
-  img.output
+  end.output
 end
 
 get '/' do
-  @svg = build_mountain
+  @svg = mountain_range_svg
   erb :index
 end
 

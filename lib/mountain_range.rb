@@ -1,4 +1,4 @@
-class MountainMaker
+class MountainRange
   THINNEST_PEAK = 25
   WIDEST_PEAK = 100
   SHORTEST_PEAK = 100
