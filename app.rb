@@ -1,52 +1,18 @@
 require 'sinatra'
 require 'rasem'
 
+require_relative 'lib/mountain_maker'
+
 def random_top
   rand(300)
 end
 
 def build_mountain
-  old_left = 0
-  old_top = 380
-  left = 20
-  top = random_top
-  img = Rasem::SVGImage.new(400,400) do
-    line old_left, old_top, left, top
-    old_left = left
-    old_top = top
-    top = random_top
-    left += rand(30)
-    line old_left, old_top, left, top
-    old_left = left
-    old_top = top
-    top = random_top
-    left += rand(30)
-    line old_left, old_top, left, top
-    old_left = left
-    old_top = top
-    top = random_top
-    left += rand(30)
-    line old_left, old_top, left, top
-    old_left = left
-    old_top = top
-    top = random_top
-    left += rand(30)
-    line old_left, old_top, left, top
-    old_left = left
-    old_top = top
-    top = random_top
-    left += rand(30)
-    line old_left, old_top, left, top
-    old_left = left
-    old_top = top
-    top = random_top
-    left += rand(30)
-    line old_left, old_top, left, top
-    old_left = left
-    old_top = top
-    top = 380
-    left = 380
-    line old_left, old_top, left, top
+  img = Rasem::SVGImage.new(400, 400) do
+    points = MountainMaker.new.points(400,400)
+    points.each_cons(2) do |a,z|
+      line a.first, a.last, z.first, z.last, :stroke=>"green"
+    end
   end
   img.output
 end
