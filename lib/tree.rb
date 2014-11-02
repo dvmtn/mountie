@@ -1,33 +1,9 @@
+require_relative 'pathable'
 class Tree
+  include Pathable
+  
   def initialize()
-    @coords = []
-    @width = 50
-    @height = 100
-    @offset_x = rand(680)
-    @offset_y = rand(408)
-    @centre = @width * 0.5
-    @colour = "#000000"
-  end
-
-  def line_to(x,y)
-    push_x_y("L", x, y)
-  end
-
-  def move_to(x,y)
-    push_x_y("M", x, y)
-  end
-
-  def push_x_y(letter, x, y)
-    @coords << "#{letter} #{@offset_x + x} #{@offset_y + y}"
-  end
-
-  def start_path
-    @coords = []
-  end
-
-  def end_path
-    @coords << "z"
-    @coords.join(" ")
+    @centre = 25
   end
 
   def draw_branch(left_offset, top)
@@ -42,30 +18,33 @@ class Tree
     line_to(@centre + 1, @height)
   end
 
-  def calculate_points
+  def reset_values
     @offset_x = rand(680)
     @offset_y = rand(300) + 108
     @height = (@offset_y / 408.0) * 100
     @width = @height/2
+  end
+
+  def calculate_points
+    reset_values()
     top = 0
     left_offset = @centre / 10
     start_path
     while top < @height - 10
       draw_branch(left_offset, top)
       top += rand(3)
-      left_offset *= -1.023
+      left_offset *= -1.024
     end
     draw_trunk
     end_path
   end
 
   def draw_tree
-    "<g>
-    <path d=\"#{calculate_points}\" fill=\"none\" stroke=\"#{@colour}\" stroke-width=\"1\"/></g>"
+    path_string(calculate_points)
   end
+  
   def draw_trees(quantity)
     trees = (0..quantity).map { |time| calculate_points }
-    "<g>
-    <path d=\"#{trees.join("")}\" fill=\"none\" stroke=\"#{@colour}\" stroke-width=\"1\"/></g>"
+    path_string(trees.join(""))
   end
 end

@@ -71,7 +71,10 @@
     <div class="wrapper">
       <h2>Randomly generated mountains.</h2>
       <%= @mountains %>
-      <svg width="680" height="408"><%= @trees %></svg>
+      <svg width="680" height="408">
+        <%= @trees %>
+        <%= @hut %>
+      </svg>
       <button id="new">New mountain!</button>
     </div>
   </section>
