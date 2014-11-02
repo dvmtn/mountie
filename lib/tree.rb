@@ -3,8 +3,8 @@ class Tree
     @coords = []
     @width = 50
     @height = 100
-    @offset_x = 0
-    @offset_y = 4
+    @offset_x = rand(680)
+    @offset_y = rand(408)
     @centre = @width * 0.5
     @colour = "#000000"
   end
@@ -43,6 +43,10 @@ class Tree
   end
 
   def calculate_points
+    @offset_x = rand(680)
+    @offset_y = rand(300) + 108
+    @height = (@offset_y / 408.0) * 100
+    @width = @height/2
     top = 0
     left_offset = @centre / 10
     start_path
@@ -55,8 +59,13 @@ class Tree
     end_path
   end
 
-  def to_svg
+  def draw_tree
     "<g>
-    <path d=\"#{calculate_points}\" fill=\"none\" stroke=\"#{@colour}\" stroke-width=\"2\"/></g>"
+    <path d=\"#{calculate_points}\" fill=\"none\" stroke=\"#{@colour}\" stroke-width=\"1\"/></g>"
+  end
+  def draw_trees(quantity)
+    trees = (0..quantity).map { |time| calculate_points }
+    "<g>
+    <path d=\"#{trees.join("")}\" fill=\"none\" stroke=\"#{@colour}\" stroke-width=\"1\"/></g>"
   end
 end

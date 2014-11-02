@@ -70,8 +70,8 @@
   <section>
     <div class="wrapper">
       <h2>Randomly generated mountains.</h2>
-      <%= @svg %>
-      <svg><%= @tree %></svg>
+      <%= @mountains %>
+      <svg width="680" height="408"><%= @trees %></svg>
       <button id="new">New mountain!</button>
     </div>
   </section>
@@ -84,8 +84,7 @@
         duration: 5000
       });
       setTimeout(function(){
-        svg.draw(function () {
-        });
+        svg.draw();
       }, 300);
       $('#new').click(function(){
         location.reload();
