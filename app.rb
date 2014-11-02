@@ -10,7 +10,7 @@ end
 
 get '/' do
   @svg = MountainRange.new(680,408).to_svg
-  @tree = Tree.new(17).to_svg
+  @tree = Tree.new().to_svg
   erb :index
 end
 

@@ -79,7 +79,10 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script>
     $(function(){
-      var svg = new Walkway('svg');
+      var svg = new Walkway({
+        selector: 'svg',
+        duration: 5000
+      });
       setTimeout(function(){
         svg.draw(function () {
         });
