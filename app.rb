@@ -13,12 +13,3 @@ get '/' do
   @tree = Tree.new().to_svg
   erb :index
 end
-
-get '/walkway.js' do
-  send_file 'walkway.js'
-end
-
-get '/mountain.svg' do
-  content_type :svg
-  build_mountain
-end

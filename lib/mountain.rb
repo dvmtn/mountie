@@ -1,12 +1,19 @@
+require_relative 'svgable'
+
 class Mountain
+  include Svgable
 
   def initialize width, max_height
     @width = width
     @max_height = max_height
   end
 
-  def points
-    [[0,@max_height], peak, [@width, @max_height]]
+  def start
+    [0, @max_height]
+  end
+
+  def finish
+    [@width, @max_height]
   end
 
   def peak
@@ -14,6 +21,10 @@ class Mountain
     x = third + rand(third)
     y = @max_height - (0.8 * rand(@max_height) )
     [x,y]
+  end
+
+  def points
+    [start, peak, finish]
   end
 
 end
