@@ -7,7 +7,7 @@ require_relative 'lib/hut'
 
 get '/' do
   @mountains = MountainPath.new(680,408).to_path
-  @trees = Tree.new().draw_trees(200)
+  @trees = Tree.new().draw_trees(5)
   @hut = Hut.new().to_path
   erb :index
 end

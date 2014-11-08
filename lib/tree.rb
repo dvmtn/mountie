@@ -29,7 +29,6 @@ class Tree
     reset_values()
     top = 0
     left_offset = @centre / 10
-    start_path
     while top < @height - 10
       draw_branch(left_offset, top)
       top += rand(3)
@@ -43,7 +42,8 @@ class Tree
   end
   
   def draw_trees(quantity)
-    trees = (0..quantity).map { |time| calculate_points }
-    path_string(trees.join("")) + 'z'
+    start_path
+    (0..quantity).each { |time| calculate_points }
+    path_string(end_path)
   end
 end
