@@ -36,7 +36,6 @@ class Tree
       left_offset *= -1.024
     end
     draw_trunk
-    end_path
   end
 
   def draw_tree
@@ -45,6 +44,6 @@ class Tree
   
   def draw_trees(quantity)
     trees = (0..quantity).map { |time| calculate_points }
-    path_string(trees.join(""))
+    path_string(trees.join("")) + 'z'
   end
 end
