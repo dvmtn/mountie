@@ -9,12 +9,14 @@ class MountainPath
 
   def to_path
     start_path
-    move_to 0, 0
-    line_to @container_width * 0.2, 0
-    line_to @container_width * 0.25, -20
-    line_to @container_width * 0.3, -10
-    line_to @container_width * 0.35, -25
-    line_to @container_width * 0.4, -10
+    x = 0
+    y = 0
+    move_to x, y
+    while x < @container_width * 0.9
+      line_to x, y
+      x += rand(10..(@container_width * 0.1))
+      y = -rand(-50)
+    end
     line_to @container_width,0 
     move_to 0, 0 
     path_string end_path, '#333'
